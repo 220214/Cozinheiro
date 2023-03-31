@@ -12,28 +12,22 @@ public class Principalsimula {
 			int k = p%2;
 			if(k==0) {
 				double por = 12.5;
-				int temp=1;
-				while ( por<=100) {
+				
+				
 				String nome = "Lasanha á Bolonhesa";
 			
-				Thread t=new Simula(s1, p, por, nome, temp);
+				Thread t=new Simula(s1, p, por, nome);
 				t.start();
-				por=por + 12.5;
-				temp=temp + 1;
 				
-			}
 			}
 			else if(k!=0) {
 				double por = 8.35;
-				int temp=1;
-				while ( por<=100) {
-				String nome = "Sopa de Cebola ";
-				Thread t=new Simula(s1, p, por, nome, temp);
-				t.start();
-				por=por + 8.35;
-				temp=temp + 1;
 			
-		}
+				String nome = "Sopa de Cebola ";
+			
+				Thread t=new Simula(s1, p, por, nome);
+				t.start();
+				
 
 	}
 			}

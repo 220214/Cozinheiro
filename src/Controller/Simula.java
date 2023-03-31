@@ -7,22 +7,33 @@ public class Simula extends Thread{
 	double porl=62.5;
 	double pors=50;
 	 int p;
-	double por,porso;
+	static double por;
 	String nome;
-	double temp;
-	public Simula(Semaphore s1, int p, double por, String nome, double temp) {
+	int temp;
+	public Simula(Semaphore s1, int p, double por, String nome) {
 		this.s1= s1;
 		this.p=p;
-		this.por=por;
+		Simula.por=por;
 		this.nome= nome;
-		this.temp=temp;
+		
 	}
 	public void run() {
-		if ((por < porl) || (por<pors)) {
-		Inicio();
+		try {
+			
+			double j = 1/1000;
+			sleep((long) j);
+			
+			Inicio();
+			
+		} catch (Exception e) {
+			
 		}
 		
+		
+		
+		
 		try {
+			
 			double j = 1/1000;
 			sleep((long) j);
 			
@@ -35,10 +46,11 @@ public class Simula extends Thread{
 		try {
 			
 			s1.acquire();
-			double j = 1/100;
+			double j = 5/1000;
 			sleep((long) j);
 			
 			entregar();
+			
 			
 		} catch (InterruptedException e) {
 			
@@ -49,15 +61,21 @@ public class Simula extends Thread{
 		
 		}
 	private void Inicio() {
-		System.out.println("Iniciado o prato "+ p + "==> "+ nome + "em " + por+ "%");
-		
+		while ((temp <pors)||(temp<porl)){
+			
+		System.out.println("Iniciado o prato "+ p + "==> "+ nome + "em processo de  " + temp+ "%");
+		temp = temp +(int) por;
+		}
 	}
 	private void entregar() {
 		
 		System.out.println("Entregando " + p + " prato de :  " + nome );
 	}
 	private void Fazer() {
-		System.err.println("Fazendo " + p + " prato de " + nome + "Está em " + por +"%");
+		while (temp <100) {
 		
+		System.err.println("Fazendo " + p + " prato de " + nome + " Está em " + temp +"%");
+		temp = (int) (temp + por);
+		}
 	}
 	}
